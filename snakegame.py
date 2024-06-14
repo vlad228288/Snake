@@ -116,22 +116,21 @@ player = Player(100, 100, 75, 75, "snake.png")
 Apple1 = Player(250, 175, 50, 50, 'apple.png')  
 Apple2 = Player(400, 130, 50, 50, 'apple.png')  
 Apple3 = Player(500, 500, 50, 50, 'apple.png')       
-Apple4 = Player(700, 535, 50, 50, "key.png")
+Apple4 = Player(700, 535, 50, 50, "apple.png")
 Apple5 = Player(290, 421, 50, 50, "apple.png")
 Apple6 = Player(480, 300, 50, 50, "apple.png")
 Apple7 = Player(100, 300, 50, 50, "apple.png")
 Apple8 = Player(100, 500, 50, 50, "apple.png")
-Apple9 = Player(290, 645, 50, 50, "key.png")
+Apple9 = Player(290, 645, 50, 50, "apple.png")
 Apple10 = Player(145, 645 ,50, 50, "apple.png")
-Apple11 = Player(-200, 100, 50, 50, "key.png")
-Apple12 = Player(-100, 600, 50, 50, "key.png")
-Apple13 = Player(-200, 535, 50, 50, "key.png")
+Apple11 = Player(-200, 100, 50, 50, "apple.png")
+Apple12 = Player(-100, 600, 50, 50, "apple.png")
+Apple13 = Player(-200, 535, 50, 50, "apple.png")
 
 
 Trophy = Player(700, 200, 200, 180, 'trophy.png')
 Trophy2 = Player(-200, 0, 200, 180, "trophy.png")
 Trophy3 = Player(-200, 200, 200, 180, "trophy.png")
-Trophy4 = Player(-200, 200, 200, 180, "trophy.png")
 #створення ворогів   
 Enemy = Player(210, 275, 95, 90, "bomb.png")
 Enemy2 = Player(345, 575, 95 , 90, "octopus.png")
@@ -196,7 +195,6 @@ while game:
     window.blit(Trophy.image, (Trophy.rect.x, Trophy.rect.y))
     window.blit(Trophy.image, (Trophy2.rect.x, Trophy2.rect.y))
     window.blit(Trophy3.image, (Trophy3.rect.x, Trophy3.rect.y))
-    window.blit(Trophy4.image, (Trophy4.rect.x, Trophy4.rect.y))
 
     window.blit(Apple1.image, (Apple1.rect.x, Apple1.rect.y))
     window.blit(Apple2.image, (Apple2.rect.x, Apple2.rect.y))
@@ -279,13 +277,14 @@ while game:
         Apple12.rect.x = -200
         wall46.rect.x = -200     
         score += 1
+        score_text = update_score_text(score)
         get_point.play()
     if player.rect.colliderect(Apple13.rect):
         Apple13.rect.x = - 200
         wall47.rect.x = -200
         score += 1
+        score_text = update_score_text(score)
 
-    
     if game_won is True:  
         window.blit(text, text_rect)
     
@@ -310,17 +309,11 @@ while game:
         walls.append(wall47)
     if player.rect.colliderect(Trophy3.rect):
         Trophy3.rect.x = -200
-        Trophy4.rect.x = 700
-        player.rect.x = 100
-        player.rect.y = 30
-        Enemy3.rect.x = -200
-    if player.rect.colliderect(Trophy4.rect):
-        Trophy4.rect.x = -200
-        Enemy.rect.x = -2000000
+        Enemy.rect.x = -20000
         Enemy2.rect.x = -200
         Enemy3.rect.x = -200
+        score += 89
         game_won = True
-
 
 
     if Enemy.rect.colliderect(player.rect):
@@ -332,6 +325,7 @@ while game:
         Enemy.rect.x = -2000000
         Enemy2.rect.x = -200
         Enemy3.rect.x = -200
+        game = False
         
 
     window.blit(score_text, (650, 80))
